@@ -27,15 +27,22 @@
     // DB connection info
     //TODO: Update the values for $host, $user, $pwd, and $db
     //using the values you retrieved earlier from the Azure Portal.
-include "connect.php";
-    // Connect to database.
-    try {
-        $conn = new PDO( "mysql:host=$host;dbname=$db", $user, $pwd);
-        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    }
-    catch(Exception $e){
-        die(var_dump($e));
-    }
+    // Connect to database
+        
+        
+$hostname="aacbm1xha31js0.c2u0hj6ejqek.us-east-1.rds.amazonaws.com"; //local server name default localhost
+$username="admin";  //mysql username default is root.
+$password="Ideapad330";       //blank if no password is set for mysql.
+$database="aacbm1xha31js0";  //database name which you created
+$con=mysql_connect($hostname,$username,$password);
+if(! $con)
+{
+die('Connection Failed'.mysql_error());
+}
+
+mysql_select_db($database,$con);
+
+       
     // Insert registration info
     if(!empty($_POST)) {
     try {
